@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { Loader2, Plus, Save, Printer, Download } from 'lucide-react';
+import { Loader2, Save, Printer, Download } from 'lucide-react';
 import { useAppStore } from '@/stores/appStore';
 
 interface ExerciseRow {
@@ -28,16 +28,25 @@ export default function PilatesProgram() {
   const [exercises, setExercises] = useState<ExerciseRow[]>([]);
   const [isGenerating, setIsGenerating] = useState(false);
   const [programGenerated, setProgramGenerated] = useState(false);
-
   useEffect(() => {
     if (!programGenerated && !isGenerating && !generatedProgram) {
+      console.log('Starting program generation from useEffect');
       generateProgram();
     } else if (generatedProgram && !programGenerated) {
       // Program already exists, just convert to table format
+      console.log('Converting existing program to table');
       convertProgramToTable(generatedProgram);
       setProgramGenerated(true);
     }
-  }, [programGenerated, isGenerating, generatedProgram]);
+  }, []); // Empty dependency array - only run once on mount
+
+  // Separate effect to handle when generatedProgram changes
+  useEffect(() => {
+    if (generatedProgram && !programGenerated) {
+      convertProgramToTable(generatedProgram);
+      setProgramGenerated(true);
+    }
+  }, [generatedProgram]);
 
   const convertProgramToTable = (program: any) => {
     const exerciseRows: ExerciseRow[] = [];
@@ -48,7 +57,7 @@ export default function PilatesProgram() {
       program.warmUp.forEach((exercise: any) => {
         exerciseRows.push({
           no: exerciseNo++,
-          equipment: exercise.equipment?.join(', ') || 'แมต',
+          equipment: Array.isArray(exercise.equipment) ? exercise.equipment.join(', ') : (exercise.equipment || 'แมต'),
           exercise: exercise.name,
           weight: 'น้ำหนักตัว',
           setsReps: `${exercise.repetitions || exercise.duration} ${exercise.repetitions ? 'ครั้ง' : 'นาที'}`
@@ -61,9 +70,9 @@ export default function PilatesProgram() {
       program.mainWorkout.forEach((exercise: any) => {
         exerciseRows.push({
           no: exerciseNo++,
-          equipment: exercise.equipment?.join(', ') || 'แมต',
+          equipment: Array.isArray(exercise.equipment) ? exercise.equipment.join(', ') : (exercise.equipment || 'แมต'),
           exercise: exercise.name,
-          weight: exercise.equipment?.includes('weights') ? 'น้ำหนักเบา' : 'น้ำหนักตัว',
+          weight: (Array.isArray(exercise.equipment) ? exercise.equipment.includes('weights') : exercise.equipment?.includes('weights')) ? 'น้ำหนักเบา' : 'น้ำหนักตัว',
           setsReps: `${exercise.sets || 1} เซต × ${exercise.repetitions || exercise.duration} ${exercise.repetitions ? 'ครั้ง' : 'นาที'}`
         });
       });
@@ -74,7 +83,7 @@ export default function PilatesProgram() {
       program.coolDown.forEach((exercise: any) => {
         exerciseRows.push({
           no: exerciseNo++,
-          equipment: exercise.equipment?.join(', ') || 'แมต',
+          equipment: Array.isArray(exercise.equipment) ? exercise.equipment.join(', ') : (exercise.equipment || 'แมต'),
           exercise: exercise.name,
           weight: 'น้ำหนักตัว',
           setsReps: `${exercise.repetitions || exercise.duration} ${exercise.repetitions ? 'ครั้ง' : 'นาที'}`
@@ -86,6 +95,12 @@ export default function PilatesProgram() {
   };
 
   const generateProgram = async () => {
+    // Prevent duplicate requests
+    if (isGenerating || generatedProgram) {
+      console.log('Already generating or program exists, skipping...');
+      return;
+    }
+
     setIsGenerating(true);
     setLoading(true);
 
@@ -113,7 +128,10 @@ export default function PilatesProgram() {
       setProgramGenerated(true);
     } catch (error) {
       console.error('Error generating program:', error);
-      alert('ไม่สามารถสร้างโปรแกรมได้ กรุณาลองใหม่อีกครั้ง');
+      // Only show error if no program was generated at all
+      if (!generatedProgram) {
+        alert('ไม่สามารถสร้างโปรแกรมได้ กรุณาลองใหม่อีกครั้ง');
+      }
     } finally {
       setIsGenerating(false);
       setLoading(false);
@@ -186,53 +204,6 @@ export default function PilatesProgram() {
     previousStep();
   };
 
-  const handleCreateMore = async () => {
-    setIsGenerating(true);
-    
-    try {
-      const response = await fetch('/api/generate-program', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          postureAnalysis: postureAnalysis?.analysis || '',
-          recommendations: postureAnalysis?.recommendations || [],
-          healthAssessment,
-          userGoals,
-          requestMoreExercises: true
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to generate additional exercises');
-      }
-
-      const result = await response.json();
-      const newProgram = result.data;
-      
-      // Add new exercises to existing list
-      const newExercises: ExerciseRow[] = [];
-      let exerciseNo = exercises.length + 1;
-
-      if (newProgram.mainWorkout) {
-        newProgram.mainWorkout.forEach((exercise: any) => {
-          newExercises.push({
-            no: exerciseNo++,
-            equipment: exercise.equipment?.join(', ') || 'แมต',
-            exercise: exercise.name,
-            weight: exercise.equipment?.includes('weights') ? 'น้ำหนักเบา' : 'น้ำหนักตัว',
-            setsReps: `${exercise.sets || 1} เซต × ${exercise.repetitions || exercise.duration} ${exercise.repetitions ? 'ครั้ง' : 'นาที'}`
-          });
-        });
-      }
-
-      setExercises([...exercises, ...newExercises]);
-    } catch (error) {
-      console.error('Error generating more exercises:', error);
-      alert('ไม่สามารถสร้างท่าออกกำลังกายเพิ่มเติมได้ กรุณาลองใหม่อีกครั้ง');
-    } finally {
-      setIsGenerating(false);
-    }
-  };
 
   if (isGenerating && !programGenerated) {
     return (
@@ -368,18 +339,6 @@ export default function PilatesProgram() {
         transition={{ duration: 0.6, delay: 0.6 }}
         className="flex flex-wrap justify-center gap-4 mb-8"
       >
-        <button
-          onClick={handleCreateMore}
-          disabled={isGenerating}
-          className="flex items-center gap-2 px-6 py-3 bg-teal-600 text-white rounded-xl font-medium hover:bg-teal-700 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50"
-        >
-          {isGenerating ? (
-            <Loader2 className="w-4 h-4 animate-spin" />
-          ) : (
-            <Plus className="w-4 h-4" />
-          )}
-          สร้างท่าออกกำลังกายเพิ่มเติม
-        </button>
 
         <button
           onClick={handleSave}

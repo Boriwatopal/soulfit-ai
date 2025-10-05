@@ -20,8 +20,8 @@ const initialState: AppState = {
     id: '',
     frontImage: null,
     backImage: null,
-    leftSideImage: null,
-    rightSideImage: null,
+    sideImage: null,
+    bendDownImage: null,
   },
   healthAssessment: {
     id: '',

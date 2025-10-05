@@ -25,7 +25,7 @@ export async function analyzePosture(images: File[]): Promise<{
           content: [
             {
               type: "text",
-              text: "Analyze these 4 posture images (front, back, left side, right side) and provide a comprehensive postural assessment. Answer in Thai only, use English words only when transliterated or for specific names."
+              text: "Analyze these 4 posture images (front, back, side, bend down) and provide a comprehensive postural assessment. The bend down image shows spinal flexibility and forward bending mechanics. Answer in Thai only, use English words only when transliterated or for specific names."
             },
             ...imageUrls.map(url => ({
               type: "image_url" as const,
@@ -63,7 +63,7 @@ export async function analyzePosture(images: File[]): Promise<{
                 },
                 required: [
                   "head_asymmetry",
-                  "shoulder_and_scapular", 
+                  "shoulder_and_scapular",
                   "feet_position"
                 ],
                 additionalProperties: false
@@ -96,11 +96,41 @@ export async function analyzePosture(images: File[]): Promise<{
                   "knee_observation"
                 ],
                 additionalProperties: false
+              },
+              bend_down_findings: {
+                type: "object",
+                description: "Observations based on viewing the subject bending forward.",
+                properties: {
+                  spinal_flexibility: {
+                    type: "string",
+                    description: "Assessment of spine flexibility and forward bending range."
+                  },
+                  movement_quality: {
+                    type: "string",
+                    description: "Quality of the bending movement pattern."
+                  },
+                  compensations: {
+                    type: "string",
+                    description: "Any compensatory movements or restrictions observed."
+                  },
+                  hip_hinge_pattern: {
+                    type: "string",
+                    description: "Assessment of hip hinge movement pattern."
+                  }
+                },
+                required: [
+                  "spinal_flexibility",
+                  "movement_quality",
+                  "compensations",
+                  "hip_hinge_pattern"
+                ],
+                additionalProperties: false
               }
             },
             required: [
               "front_back_findings",
-              "side_findings"
+              "side_findings",
+              "bend_down_findings"
             ],
             additionalProperties: false
           }
@@ -127,6 +157,12 @@ Side View Analysis:
 - Shoulder Posture: ${parsed.side_findings.shoulder_posture}
 - Lumbar/Pelvic: ${parsed.side_findings.lumbar_pelvic_posture}
 - Knees: ${parsed.side_findings.knee_observation}
+
+Bend Down Analysis:
+- Spinal Flexibility: ${parsed.bend_down_findings.spinal_flexibility}
+- Movement Quality: ${parsed.bend_down_findings.movement_quality}
+- Compensations: ${parsed.bend_down_findings.compensations}
+- Hip Hinge Pattern: ${parsed.bend_down_findings.hip_hinge_pattern}
       `.trim();
 
       // Generate recommendations based on findings
@@ -175,197 +211,70 @@ export async function generatePilatesProgram(data: {
   healthAssessment: any;
   userGoals: any;
 }): Promise<any> {
+  // Load exercise database
+  const exerciseDatabase = await import('@/data/exercises.json');
   try {
-    console.log('Starting two-phase Pilates program generation...');
-    
-    // PHASE 1: Comprehensive Analysis
-    console.log('Phase 1: Analyzing health and posture data...');
-    const analysisResponse = await openai.chat.completions.create({
-      model: "gpt-5-mini",
-      messages: [
-        {
-          role: "system",
-          content: "You are an expert Pilates instructor, movement specialist, and health analyst. Analyze all provided health and posture data to create a comprehensive assessment that will guide program design."
-        },
-        {
-          role: "user",
-          content: `Perform a comprehensive analysis of this person's health and movement profile:
+    console.log('Starting single-phase Pilates program generation...');
 
-              POSTURE ANALYSIS RESULTS:
-              ${data.postureAnalysis}
-              
-              POSTURE RECOMMENDATIONS:
-              ${data.recommendations.join(', ')}
-              
-              HEALTH ASSESSMENT DATA:
-              ${JSON.stringify(data.healthAssessment, null, 2)}
-              
-              USER GOALS & PREFERENCES:
-              ${JSON.stringify(data.userGoals, null, 2)}
-              
-              Please provide a detailed analysis that identifies:
-              1. Primary movement dysfunctions and imbalances
-              2. Key health metrics that impact exercise selection
-              3. Risk factors and contraindications
-              4. Priority areas for improvement
-              5. Optimal exercise strategies based on their body composition and goals
-              6. Specific Pilates principles that would benefit this individual most
-              
-              This analysis will be used to design a personalized Pilates program.`
-        }
-      ],
-      response_format: {
-        type: "json_schema",
-        json_schema: {
-          name: "comprehensive_analysis",
-          strict: true,
-          schema: {
-            type: "object",
-            properties: {
-              movement_assessment: {
-                type: "object",
-                properties: {
-                  primary_dysfunctions: {
-                    type: "array",
-                    items: { type: "string" },
-                    description: "Main movement patterns that need correction"
-                  },
-                  muscle_imbalances: {
-                    type: "array", 
-                    items: { type: "string" },
-                    description: "Specific muscle imbalances identified"
-                  },
-                  postural_deviations: {
-                    type: "array",
-                    items: { type: "string" },
-                    description: "Key postural issues to address"
-                  },
-                  mobility_restrictions: {
-                    type: "array",
-                    items: { type: "string" },
-                    description: "Areas with limited mobility or flexibility"
-                  }
-                },
-                required: ["primary_dysfunctions", "muscle_imbalances", "postural_deviations", "mobility_restrictions"],
-                additionalProperties: false
-              },
-              health_considerations: {
-                type: "object",
-                properties: {
-                  body_composition_insights: {
-                    type: "string",
-                    description: "How body composition affects exercise selection"
-                  },
-                  strength_levels: {
-                    type: "string",
-                    description: "Assessment of overall strength capacity"
-                  },
-                  risk_factors: {
-                    type: "array",
-                    items: { type: "string" },
-                    description: "Health conditions or injuries that require modifications"
-                  },
-                  exercise_contraindications: {
-                    type: "array",
-                    items: { type: "string" },
-                    description: "Exercises or movements to avoid"
-                  }
-                },
-                required: ["body_composition_insights", "strength_levels", "risk_factors", "exercise_contraindications"],
-                additionalProperties: false
-              },
-              priority_areas: {
-                type: "object",
-                properties: {
-                  immediate_focus: {
-                    type: "array",
-                    items: { type: "string" },
-                    description: "Most critical areas requiring immediate attention"
-                  },
-                  secondary_goals: {
-                    type: "array",
-                    items: { type: "string" },
-                    description: "Important but secondary improvement areas"
-                  },
-                  long_term_objectives: {
-                    type: "array",
-                    items: { type: "string" },
-                    description: "Goals for ongoing development"
-                  }
-                },
-                required: ["immediate_focus", "secondary_goals", "long_term_objectives"],
-                additionalProperties: false
-              },
-              pilates_strategy: {
-                type: "object",
-                properties: {
-                  key_principles: {
-                    type: "array",
-                    items: { type: "string" },
-                    description: "Which Pilates principles will benefit this person most"
-                  },
-                  optimal_exercise_types: {
-                    type: "array",
-                    items: { type: "string" },
-                    description: "Types of Pilates exercises most beneficial"
-                  },
-                  progression_approach: {
-                    type: "string",
-                    description: "How to structure progression for this individual"
-                  },
-                  session_structure_rationale: {
-                    type: "string",
-                    description: "Why specific session structure will be most effective"
-                  }
-                },
-                required: ["key_principles", "optimal_exercise_types", "progression_approach", "session_structure_rationale"],
-                additionalProperties: false
-              }
-            },
-            required: ["movement_assessment", "health_considerations", "priority_areas", "pilates_strategy"],
-            additionalProperties: false
-          }
-        }
-      },
-      max_completion_tokens: 5000
-    });
 
-    const analysisContent = analysisResponse.choices[0]?.message?.content;
-    if (!analysisContent) throw new Error('No analysis response from GPT-5');
-    
-    const comprehensiveAnalysis = JSON.parse(analysisContent);
-    console.log('Phase 1 complete: Comprehensive analysis generated');
-
-    // PHASE 2: Program Design Based on Analysis
-    console.log('Phase 2: Designing specific Pilates program...');
     const response = await openai.chat.completions.create({
       model: "gpt-5-mini",
       messages: [
         {
           role: "system",
-          content: "You are an expert Pilates instructor creating a specific 50-minute program. Use the comprehensive analysis to design exercises with detailed reasoning for each choice."
+          content: "You are an expert Pilates instructor creating a personalized 50-minute program. Analyze the user's posture, health, and goals, then select appropriate exercises from the professional database provided. Always respond in Thai language."
         },
         {
           role: "user",
-          content: `Based on this comprehensive analysis, design a specific 50-minute Pilates program:
+          content: `Create a personalized 50-minute Pilates program by selecting exercises from this list:
 
-              COMPREHENSIVE ANALYSIS:
-              ${JSON.stringify(comprehensiveAnalysis, null, 2)}
-              
-              ORIGINAL USER DATA:
+              AVAILABLE EXERCISES BY EQUIPMENT:
+
+              MAT EXERCISES:
+              ${exerciseDatabase.exercises.filter(e => e.equipment === 'Mat').map(e => `${e.name} (${e.id})`).join(', ')}
+
+              REFORMER EXERCISES:
+              ${exerciseDatabase.exercises.filter(e => e.equipment === 'Reformer').map(e => `${e.name} (${e.id})`).join(', ')}
+
+              LADDER BARREL EXERCISES:
+              ${exerciseDatabase.exercises.filter(e => e.equipment === 'Ladder Barrel').map(e => `${e.name} (${e.id})`).join(', ')}
+
+              CADILLAC EXERCISES:
+              ${exerciseDatabase.exercises.filter(e => e.equipment === 'Cadillac').map(e => `${e.name} (${e.id})`).join(', ')}
+
+              CHAIR EXERCISES:
+              ${exerciseDatabase.exercises.filter(e => e.equipment === 'Chair').map(e => `${e.name} (${e.id})`).join(', ')}
+
+              ARM CHAIR EXERCISES:
+              ${exerciseDatabase.exercises.filter(e => e.equipment === 'Arm Chair').map(e => `${e.name} (${e.id})`).join(', ')}
+
+              USER DATA TO ANALYZE:
+
+              POSTURE ANALYSIS:
+              ${data.postureAnalysis}
+
+              POSTURE RECOMMENDATIONS:
+              ${data.recommendations.join(', ')}
+
+              HEALTH ASSESSMENT:
+              ${JSON.stringify(data.healthAssessment, null, 2)}
+
+              USER GOALS & PREFERENCES:
               - Experience Level: ${data.userGoals.experienceLevel}
               - Available Time: ${data.userGoals.availableTime} minutes
               - Primary Goal: ${data.userGoals.primaryGoal}
               - Focus Areas: ${data.userGoals.focusAreas?.join(', ')}
-              - Equipment Available: ${data.userGoals.preferences?.equipment?.join(', ')}
+              - Equipment Available: ${data.userGoals.preferences?.equipment?.length > 0 ? data.userGoals.preferences.equipment.join(', ') : 'All equipment types available (Mat, Reformer, Ladder Barrel, Cadillac, Chair, Arm Chair)'}
               - Intensity Preference: ${data.userGoals.preferences?.intensity}
-              
-              Create a detailed 50-minute program with:
-              - Warm-up (8-10 minutes): Prepare the body for the specific issues identified
-              - Main workout (35 minutes): Target the priority areas with appropriate exercises
-              - Cool-down (5-7 minutes): Address flexibility and recovery needs
-              
-              For EACH exercise, explain WHY it was chosen based on the analysis.`
+
+              INSTRUCTIONS:
+              1. ANALYZE the user's posture, health, and goals
+              2. SELECT exercises from the database (use exact exercise IDs)
+              3. CREATE a 50-minute structure: warm-up (8-10 min) → main (35 min) → cool-down (5-7 min)
+              4. MATCH exercises to equipment preference and experience level
+              5. USE A VARIETY of equipment types to create an engaging and comprehensive program
+              6. ONLY use exercises that exist in the provided database
+              7. RESPOND IN THAI LANGUAGE for all text fields (title, reasoning, targetedIssues, expectedOutcomes, progressionTips)`
         }
       ],
       response_format: {
@@ -397,18 +306,12 @@ export async function generatePilatesProgram(data: {
                 items: {
                   type: "object",
                   properties: {
-                    name: { type: "string" },
-                    description: { type: "string" },
+                    exerciseId: {
+                      type: "string",
+                      description: "Exercise ID from the database"
+                    },
                     duration: { type: "number" },
                     repetitions: { type: "number" },
-                    targetAreas: {
-                      type: "array",
-                      items: { type: "string" }
-                    },
-                    difficulty: {
-                      type: "string",
-                      enum: ["easy", "medium", "hard"]
-                    },
                     modifications: {
                       type: "array",
                       items: { type: "string" }
@@ -418,7 +321,7 @@ export async function generatePilatesProgram(data: {
                       description: "Why this specific exercise was chosen based on the analysis"
                     }
                   },
-                  required: ["name", "description", "duration", "targetAreas", "difficulty", "reasoning"],
+                  required: ["exerciseId", "duration", "repetitions", "modifications", "reasoning"],
                   additionalProperties: false
                 }
               },
@@ -427,24 +330,14 @@ export async function generatePilatesProgram(data: {
                 items: {
                   type: "object",
                   properties: {
-                    name: { type: "string" },
-                    description: { type: "string" },
+                    exerciseId: {
+                      type: "string",
+                      description: "Exercise ID from the database"
+                    },
                     duration: { type: "number" },
                     repetitions: { type: "number" },
                     sets: { type: "number" },
-                    targetAreas: {
-                      type: "array",
-                      items: { type: "string" }
-                    },
-                    difficulty: {
-                      type: "string",
-                      enum: ["easy", "medium", "hard"]
-                    },
                     modifications: {
-                      type: "array",
-                      items: { type: "string" }
-                    },
-                    equipment: {
                       type: "array",
                       items: { type: "string" }
                     },
@@ -453,7 +346,7 @@ export async function generatePilatesProgram(data: {
                       description: "Why this specific exercise was chosen based on the analysis"
                     }
                   },
-                  required: ["name", "description", "duration", "targetAreas", "difficulty", "reasoning"],
+                  required: ["exerciseId", "duration", "repetitions", "sets", "modifications", "reasoning"],
                   additionalProperties: false
                 }
               },
@@ -462,18 +355,12 @@ export async function generatePilatesProgram(data: {
                 items: {
                   type: "object",
                   properties: {
-                    name: { type: "string" },
-                    description: { type: "string" },
+                    exerciseId: {
+                      type: "string",
+                      description: "Exercise ID from the database"
+                    },
                     duration: { type: "number" },
                     repetitions: { type: "number" },
-                    targetAreas: {
-                      type: "array",
-                      items: { type: "string" }
-                    },
-                    difficulty: {
-                      type: "string",
-                      enum: ["easy", "medium", "hard"]
-                    },
                     modifications: {
                       type: "array",
                       items: { type: "string" }
@@ -483,18 +370,8 @@ export async function generatePilatesProgram(data: {
                       description: "Why this specific exercise was chosen based on the analysis"
                     }
                   },
-                  required: ["name", "description", "duration", "targetAreas", "difficulty", "reasoning"],
+                  required: ["exerciseId", "duration", "repetitions", "modifications", "reasoning"],
                   additionalProperties: false
-                }
-              },
-              comprehensive_analysis: {
-                type: "object",
-                description: "The detailed analysis that guided this program design",
-                properties: {
-                  movement_assessment: { type: "object" },
-                  health_considerations: { type: "object" },
-                  priority_areas: { type: "object" },
-                  pilates_strategy: { type: "object" }
                 }
               },
               reasoning: {
@@ -517,21 +394,52 @@ export async function generatePilatesProgram(data: {
                 description: "How to progress and advance the program"
               }
             },
-            required: ["id", "title", "duration", "totalExercises", "warmUp", "mainWorkout", "coolDown", "comprehensive_analysis", "reasoning", "targetedIssues", "expectedOutcomes", "progressionTips"],
+            required: ["id", "title", "duration", "totalExercises", "warmUp", "mainWorkout", "coolDown", "reasoning", "targetedIssues", "expectedOutcomes", "progressionTips"],
             additionalProperties: false
           }
         }
       },
-      max_completion_tokens: 5000
+      max_completion_tokens: 7500
+    });
+
+    console.log('OpenAI Response received:', {
+      choices: response.choices?.length,
+      firstChoice: response.choices?.[0]?.message?.content ? 'Has content' : 'No content',
+      responseId: response.id,
+      usage: response.usage
     });
 
     const content = response.choices[0]?.message?.content;
-    if (!content) throw new Error('No program response from GPT-5');
+    if (!content) {
+      console.error('No content in OpenAI response:', JSON.stringify(response, null, 2));
+      throw new Error('No program response from GPT-5');
+    }
 
     const parsed = JSON.parse(content);
-    
-    // Add the comprehensive analysis to the final program
-    parsed.comprehensive_analysis = comprehensiveAnalysis;
+
+    // Expand exerciseIds to full exercise details
+    const expandExercises = (exercises: any[]) => {
+      return exercises.map(ex => {
+        const exerciseDetail = exerciseDatabase.exercises.find(e => e.id === ex.exerciseId);
+        if (!exerciseDetail) {
+          console.warn(`Exercise ID ${ex.exerciseId} not found in database`);
+          return ex;
+        }
+        return {
+          ...exerciseDetail,
+          duration: ex.duration,
+          repetitions: ex.repetitions,
+          sets: ex.sets,
+          modifications: ex.modifications || [],
+          reasoning: ex.reasoning
+        };
+      });
+    };
+
+    // Expand all exercise sections
+    parsed.warmUp = expandExercises(parsed.warmUp || []);
+    parsed.mainWorkout = expandExercises(parsed.mainWorkout || []);
+    parsed.coolDown = expandExercises(parsed.coolDown || []);
     
     // Add generated ID and timestamp if not present
     if (!parsed.id) {
@@ -539,13 +447,13 @@ export async function generatePilatesProgram(data: {
     }
     parsed.createdAt = new Date();
     
-    console.log('Phase 2 complete: Detailed Pilates program generated with exercise reasoning');
-    console.log('Two-phase program generation completed successfully');
+    console.log('Pilates program generated successfully with exercise selection from database');
 
     return parsed;
   } catch (error) {
     console.error('Error generating program:', error);
-    throw new Error('Failed to generate Pilates program');
+    console.error('Error details:', JSON.stringify(error, null, 2));
+    throw error;
   }
 }
 

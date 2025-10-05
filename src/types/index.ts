@@ -2,8 +2,8 @@ export interface PostureAnalysis {
   id: string;
   frontImage: File | null;
   backImage: File | null;
-  leftSideImage: File | null;
-  rightSideImage: File | null;
+  sideImage: File | null;
+  bendDownImage: File | null;
   analysis?: string;
   recommendations?: string[];
 }

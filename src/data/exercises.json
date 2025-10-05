@@ -1,0 +1,346 @@
+{
+  "exercises": [
+    {
+      "id": "mat_hundred",
+      "name": "Hundred",
+      "equipment": "Mat",
+      "targetAreas": ["core", "circulation"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "warm-up"
+    },
+    {
+      "id": "mat_roll_up",
+      "name": "Roll Up",
+      "equipment": "Mat",
+      "targetAreas": ["core", "spine"],
+      "difficulty": "beginner",
+      "duration": 2,
+      "category": "main"
+    },
+    {
+      "id": "mat_single_leg_stretch",
+      "name": "Single Leg Stretch",
+      "equipment": "Mat",
+      "targetAreas": ["core", "legs"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "mat_criss_cross",
+      "name": "Criss Cross",
+      "equipment": "Mat",
+      "targetAreas": ["core", "obliques"],
+      "difficulty": "intermediate",
+      "duration": 2,
+      "category": "main"
+    },
+    {
+      "id": "mat_spine_stretch_forward",
+      "name": "Spine Stretch Forward",
+      "equipment": "Mat",
+      "targetAreas": ["spine", "hamstrings"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "mat_teaser",
+      "name": "Teaser",
+      "equipment": "Mat",
+      "targetAreas": ["core", "balance"],
+      "difficulty": "advanced",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "mat_seal",
+      "name": "Seal",
+      "equipment": "Mat",
+      "targetAreas": ["spine", "coordination"],
+      "difficulty": "intermediate",
+      "duration": 2,
+      "category": "cool-down"
+    },
+    {
+      "id": "reformer_footwork",
+      "name": "Footwork",
+      "equipment": "Reformer",
+      "targetAreas": ["legs", "feet"],
+      "difficulty": "beginner",
+      "duration": 5,
+      "category": "warm-up"
+    },
+    {
+      "id": "reformer_hundred",
+      "name": "Hundred",
+      "equipment": "Reformer",
+      "targetAreas": ["core", "circulation"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "warm-up"
+    },
+    {
+      "id": "reformer_short_spine_massage",
+      "name": "Short Spine Massage",
+      "equipment": "Reformer",
+      "targetAreas": ["spine", "core"],
+      "difficulty": "intermediate",
+      "duration": 4,
+      "category": "main"
+    },
+    {
+      "id": "reformer_pull_straps",
+      "name": "Pull Straps",
+      "equipment": "Reformer",
+      "targetAreas": ["back", "arms"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "reformer_long_stretch",
+      "name": "Long Stretch",
+      "equipment": "Reformer",
+      "targetAreas": ["core", "shoulders"],
+      "difficulty": "intermediate",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "reformer_stomach_massage",
+      "name": "Stomach Massage",
+      "equipment": "Reformer",
+      "targetAreas": ["core", "spine"],
+      "difficulty": "intermediate",
+      "duration": 4,
+      "category": "main"
+    },
+    {
+      "id": "reformer_knee_stretch_series",
+      "name": "Knee Stretch Series",
+      "equipment": "Reformer",
+      "targetAreas": ["core", "legs"],
+      "difficulty": "intermediate",
+      "duration": 4,
+      "category": "main"
+    },
+    {
+      "id": "reformer_side_splits",
+      "name": "Side Splits",
+      "equipment": "Reformer",
+      "targetAreas": ["legs", "hips"],
+      "difficulty": "advanced",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "ladder_barrel_swan",
+      "name": "Swan",
+      "equipment": "Ladder Barrel",
+      "targetAreas": ["back", "spine"],
+      "difficulty": "intermediate",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "ladder_barrel_short_box_series",
+      "name": "Short Box Series",
+      "equipment": "Ladder Barrel",
+      "targetAreas": ["core", "spine"],
+      "difficulty": "intermediate",
+      "duration": 5,
+      "category": "main"
+    },
+    {
+      "id": "ladder_barrel_side_sit_ups",
+      "name": "Side Sit Ups",
+      "equipment": "Ladder Barrel",
+      "targetAreas": ["core", "obliques"],
+      "difficulty": "intermediate",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "ladder_barrel_ballet_stretch_series",
+      "name": "Ballet Stretch Series",
+      "equipment": "Ladder Barrel",
+      "targetAreas": ["legs", "hips"],
+      "difficulty": "beginner",
+      "duration": 4,
+      "category": "cool-down"
+    },
+    {
+      "id": "ladder_barrel_chest_opening",
+      "name": "Chest Opening",
+      "equipment": "Ladder Barrel",
+      "targetAreas": ["chest", "shoulders"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "cool-down"
+    },
+    {
+      "id": "ladder_barrel_counterstretch",
+      "name": "Counterstretch",
+      "equipment": "Ladder Barrel",
+      "targetAreas": ["spine", "back"],
+      "difficulty": "beginner",
+      "duration": 2,
+      "category": "cool-down"
+    },
+    {
+      "id": "cadillac_roll_back_bar",
+      "name": "Roll Back Bar",
+      "equipment": "Cadillac",
+      "targetAreas": ["core", "spine"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "cadillac_chest_expansion",
+      "name": "Chest Expansion",
+      "equipment": "Cadillac",
+      "targetAreas": ["chest", "back"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "cadillac_leg_springs",
+      "name": "Leg Springs (Frog + Circles)",
+      "equipment": "Cadillac",
+      "targetAreas": ["legs", "hips"],
+      "difficulty": "beginner",
+      "duration": 4,
+      "category": "main"
+    },
+    {
+      "id": "cadillac_push_through_bar",
+      "name": "Push Through Bar",
+      "equipment": "Cadillac",
+      "targetAreas": ["core", "arms"],
+      "difficulty": "intermediate",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "cadillac_tower",
+      "name": "Tower",
+      "equipment": "Cadillac",
+      "targetAreas": ["core", "legs"],
+      "difficulty": "advanced",
+      "duration": 4,
+      "category": "main"
+    },
+    {
+      "id": "cadillac_swan",
+      "name": "Swan",
+      "equipment": "Cadillac",
+      "targetAreas": ["back", "spine"],
+      "difficulty": "intermediate",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "cadillac_hanging_pull_up",
+      "name": "Hanging Pull Up",
+      "equipment": "Cadillac",
+      "targetAreas": ["arms", "back"],
+      "difficulty": "advanced",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "chair_pumping",
+      "name": "Pumping",
+      "equipment": "Chair",
+      "targetAreas": ["legs", "core"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "warm-up"
+    },
+    {
+      "id": "chair_going_up_front",
+      "name": "Going Up Front",
+      "equipment": "Chair",
+      "targetAreas": ["legs", "balance"],
+      "difficulty": "intermediate",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "chair_push_pedal_down",
+      "name": "Push the Pedal Down",
+      "equipment": "Chair",
+      "targetAreas": ["arms", "core"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "chair_swan",
+      "name": "Swan",
+      "equipment": "Chair",
+      "targetAreas": ["back", "spine"],
+      "difficulty": "intermediate",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "chair_teaser_on_top",
+      "name": "Teaser on Top",
+      "equipment": "Chair",
+      "targetAreas": ["core", "balance"],
+      "difficulty": "advanced",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "chair_mermaid",
+      "name": "Mermaid",
+      "equipment": "Chair",
+      "targetAreas": ["core", "spine"],
+      "difficulty": "intermediate",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "arm_chair_press_out",
+      "name": "Press Out",
+      "equipment": "Arm Chair",
+      "targetAreas": ["arms", "chest"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "arm_chair_boxing",
+      "name": "Boxing",
+      "equipment": "Arm Chair",
+      "targetAreas": ["arms", "core"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "main"
+    },
+    {
+      "id": "arm_chair_hug",
+      "name": "Hug",
+      "equipment": "Arm Chair",
+      "targetAreas": ["chest", "arms"],
+      "difficulty": "beginner",
+      "duration": 2,
+      "category": "main"
+    },
+    {
+      "id": "arm_chair_circles",
+      "name": "Circles",
+      "equipment": "Arm Chair",
+      "targetAreas": ["arms", "shoulders"],
+      "difficulty": "beginner",
+      "duration": 3,
+      "category": "main"
+    }
+  ]
+}

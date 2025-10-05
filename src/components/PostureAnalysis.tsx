@@ -9,8 +9,8 @@ import { useAppStore } from '@/stores/appStore';
 const imagePositions = [
   { id: 'front', label: 'ด้านหน้า', description: 'ยืนตรงหันหน้าเข้าหากล้อง' },
   { id: 'back', label: 'ด้านหลัง', description: 'หันหลังให้กล้อง' },
-  { id: 'leftSide', label: 'ด้านข้างซ้าย', description: 'หันด้านข้างซ้ายให้กล้อง' },
-  { id: 'rightSide', label: 'ด้านข้างขวา', description: 'หันด้านข้างขวาให้กล้อง' },
+  { id: 'side', label: 'ด้านข้าง', description: 'หันด้านข้างให้กล้อง' },
+  { id: 'bendDown', label: 'ก้มลง', description: 'ก้มตัวลงข้างหน้าให้เท่าที่สามารถทำได้' },
 ];
 
 export default function PostureAnalysis() {
@@ -54,7 +54,7 @@ export default function PostureAnalysis() {
 
   const handleAnalyze = async () => {
     if (!allImagesUploaded) {
-      alert('กรุณาอัปโหลดภาพท่าทางครบทั้ง 4 มุมก่อนดำเนินการต่อ');
+      alert('กรุณาอัปโหลดภาพท่าทางครบทั้ง 4 ท่าก่อนดำเนินการต่อ');
       return;
     }
 
@@ -111,8 +111,8 @@ export default function PostureAnalysis() {
           การวิเคราะห์ท่าทาง
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          อัปโหลดภาพที่ชัดเจนจากทั้ง 4 มุมเพื่อการวิเคราะห์ท่าทางที่ครอบคลุม 
-          ยืนอย่างธรรมชาติในเสื้อผ้าน้อยที่สุดเพื่อผลลัพธ์ที่ดีที่สุด
+          อัปโหลดภาพที่ชัดเจนจากทั้ง 4 ท่าเพื่อการวิเคราะห์ท่าทางที่ครอบคลุม
+          ถ่ายในเสื้อผ้าน้อยที่สุดเพื่อผลลัพธ์ที่ดีที่สุด
         </p>
       </motion.div>
 
@@ -162,7 +162,7 @@ export default function PostureAnalysis() {
         
         {!allImagesUploaded && (
           <p className="text-sm text-gray-500 mt-4">
-            กรุณาอัปโหลดภาพครบทั้ง 4 มุมเพื่อเริ่มการวิเคราะห์
+            กรุณาอัปโหลดภาพครบทั้ง 4 ท่าเพื่อเริ่มการวิเคราะห์
           </p>
         )}
       </motion.div>
