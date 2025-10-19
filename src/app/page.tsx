@@ -90,12 +90,12 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-3"
             >
-              <div className="w-10 h-10 relative">
+              <div className="w-16 h-16 relative">
                 <Image
                   src="/images/soulfit-logo.png"
                   alt="SoulFit Logo"
-                  width={40}
-                  height={40}
+                  width={64}
+                  height={64}
                   className="object-contain"
                 />
               </div>
@@ -140,12 +140,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 relative">
+                <div className="w-12 h-12 relative">
                   <Image
                     src="/images/soulfit-logo.png"
                     alt="SoulFit Logo"
-                    width={32}
-                    height={32}
+                    width={48}
+                    height={48}
                     className="object-contain"
                   />
                 </div>
