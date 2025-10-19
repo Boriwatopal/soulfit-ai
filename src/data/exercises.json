@@ -2,155 +2,727 @@
   "exercises": [
     {
       "equipment": "Mat",
-      "name": "Hundred"
+      "name": "sit with control"
     },
     {
       "equipment": "Mat",
-      "name": "Roll Up"
+      "name": "hundred"
     },
     {
       "equipment": "Mat",
-      "name": "Single Leg Stretch"
+      "name": "roll up"
     },
     {
       "equipment": "Mat",
-      "name": "Criss Cross"
+      "name": "single leg circles"
     },
     {
       "equipment": "Mat",
-      "name": "Spine Stretch Forward"
+      "name": "rolling like ball"
     },
     {
       "equipment": "Mat",
-      "name": "Teaser"
+      "name": "single leg stretch"
     },
     {
       "equipment": "Mat",
-      "name": "Seal"
+      "name": "double straight leg stretch"
+    },
+    {
+      "equipment": "Mat",
+      "name": "criss cross"
+    },
+    {
+      "equipment": "Mat",
+      "name": "spine stretch forward"
+    },
+    {
+      "equipment": "Mat",
+      "name": "open leg rocker"
+    },
+    {
+      "equipment": "Mat",
+      "name": "corkscrew"
+    },
+    {
+      "equipment": "Mat",
+      "name": "saw"
+    },
+    {
+      "equipment": "Mat",
+      "name": "neck roll"
+    },
+    {
+      "equipment": "Mat",
+      "name": "rest position"
+    },
+    {
+      "equipment": "Mat",
+      "name": "single leg kick"
+    },
+    {
+      "equipment": "Mat",
+      "name": "double leg kick"
+    },
+    {
+      "equipment": "Mat",
+      "name": "neck pull"
+    },
+    {
+      "equipment": "Mat",
+      "name": "spine twist"
+    },
+    {
+      "equipment": "Mat",
+      "name": "side kick 1-3"
+    },
+    {
+      "equipment": "Mat",
+      "name": "sk bridge with leg lift"
+    },
+    {
+      "equipment": "Mat",
+      "name": "sk inner thigh circles"
+    },
+    {
+      "equipment": "Mat",
+      "name": "sk lift both legs"
+    },
+    {
+      "equipment": "Mat",
+      "name": "sk bicycle"
+    },
+    {
+      "equipment": "Mat",
+      "name": "teaser1"
+    },
+    {
+      "equipment": "Mat",
+      "name": "seal"
+    },
+    {
+      "equipment": "Mat",
+      "name": "push ups"
     },
     {
       "equipment": "Reformer",
-      "name": "Footwork"
+      "name": "footwork"
     },
     {
       "equipment": "Reformer",
-      "name": "Hundred"
+      "name": "hundred"
     },
     {
       "equipment": "Reformer",
-      "name": "Short Spine Massage"
+      "name": "short spinal massage"
     },
     {
       "equipment": "Reformer",
-      "name": "Pull Straps"
+      "name": "coordination"
     },
     {
       "equipment": "Reformer",
-      "name": "Long Stretch"
+      "name": "rowing1 into the sternum-prep"
     },
     {
       "equipment": "Reformer",
-      "name": "Stomach Massage"
+      "name": "rowing2 from the hips-prep"
     },
     {
       "equipment": "Reformer",
-      "name": "Knee Stretch Series"
+      "name": "rowing3 from the chest"
     },
     {
       "equipment": "Reformer",
-      "name": "Side Splits"
+      "name": "pull strap 1-2"
     },
     {
-      "equipment": "Ladder barrel, corrector spine",
-      "name": "Swan"
+      "equipment": "Reformer",
+      "name": "backstroke"
     },
     {
-      "equipment": "Ladder barrel, corrector spine",
-      "name": "Short Box Series"
+      "equipment": "Reformer",
+      "name": "teaser"
     },
     {
-      "equipment": "Ladder barrel, corrector spine",
-      "name": "Side Sit Ups"
+      "equipment": "Reformer",
+      "name": "long stretch"
     },
     {
-      "equipment": "Ladder barrel, corrector spine",
-      "name": "Ballet Stretch Series"
+      "equipment": "Reformer",
+      "name": "down stretch"
     },
     {
-      "equipment": "Ladder barrel, corrector spine",
-      "name": "Chest Opening"
+      "equipment": "Reformer",
+      "name": "up stretch"
     },
     {
-      "equipment": "Ladder barrel, corrector spine",
-      "name": "Counterstretch"
+      "equipment": "Reformer",
+      "name": "elephant"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "1 leg elephant"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "stomach massage 1-4"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "tendon stretch prep"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "semicircle"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "leg frogs and circles"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "knee stretch series"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "running"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "pelvic lift"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "side splits"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "front splits"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "front splits in balance"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "thigh split"
+    },
+    {
+      "equipment": "Reformer",
+      "name": "balance and reach"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "hight barels"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "ballet stretch series"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "front slide / lift"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "side slide / lift"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "thigh stretch"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "short box series"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "swan"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "horseback"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "side sit ups"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "ladder"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "lunge for balance and control"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "archilles stretch holding"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "spine corrector"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "chest opening series"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "roll chest up over barrel"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "breathing with bar"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "arms circle"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "hug"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "counterstetch"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "leg series"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "circles"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "walking"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "beat"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "rolling in and out"
+    },
+    {
+      "equipment": "Ladder barrel",
+      "name": "rest position"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "hight barels"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "ballet stretch series"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "front slide / lift"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "side slide / lift"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "thigh stretch"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "short box series"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "swan"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "horseback"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "side sit ups"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "ladder"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "lunge for balance and control"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "archilles stretch holding"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "spine corrector"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "chest opening series"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "roll chest up over barrel"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "breathing with bar"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "arms circle"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "hug"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "counterstetch"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "leg series"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "circles"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "walking"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "beat"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "rolling in and out"
+    },
+    {
+      "equipment": "Corrector spine",
+      "name": "rest position"
     },
     {
       "equipment": "Cadillac",
-      "name": "Roll Back Bar"
+      "name": "roll back bar"
     },
     {
       "equipment": "Cadillac",
-      "name": "Chest Expansion"
+      "name": "roll back , with 1 arm"
     },
     {
       "equipment": "Cadillac",
-      "name": "Leg Springs (Frog + Circles)"
+      "name": "chest expansion kneeling/ standing"
     },
     {
       "equipment": "Cadillac",
-      "name": "Push Through Bar"
+      "name": "thigh stretch"
     },
     {
       "equipment": "Cadillac",
-      "name": "Tower"
+      "name": "rolling in and out"
     },
     {
       "equipment": "Cadillac",
-      "name": "Swan"
+      "name": "long back arms kneeling"
     },
     {
       "equipment": "Cadillac",
-      "name": "Hanging Pull Up"
+      "name": "rolling stomach massage"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "side arm lean"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "long back arm standing"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "press out (bar up and down)"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "squats"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "leg springs series"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "frogs"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "circles"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "walking"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "beat"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "bicycle"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "airplane"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "1 leg spring series"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "straight leg raise"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "circle"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "cross body circle"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "side bicycle"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "arm spring series"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "up and down"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "circle"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "triceps"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "standing arm springs series"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "press out"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "boxing"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "hug"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "chest expansion"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "squats"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "push through bar"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "tower"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "monkey"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "teaser 3 variations"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "reverse push through"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "press down"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "mermaid"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "sari"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "swan"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "push through"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "trapeze"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "ending"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "breathing"
+    },
+    {
+      "equipment": "Cadillac",
+      "name": "hanging pull up"
     },
     {
       "equipment": "Chair",
-      "name": "Pumping"
+      "name": "pumping in scoop"
     },
     {
       "equipment": "Chair",
-      "name": "Going Up Front"
+      "name": "pumping upright"
     },
     {
       "equipment": "Chair",
-      "name": "Push the Pedal Down"
+      "name": "pumping 1 leg"
     },
     {
       "equipment": "Chair",
-      "name": "Swan"
+      "name": "pumping in demipoint front / side"
     },
     {
       "equipment": "Chair",
-      "name": "Teaser on Top"
+      "name": "standing tendon stretch"
     },
     {
       "equipment": "Chair",
-      "name": "Mermaid"
+      "name": "going up front / side"
     },
     {
-      "equipment": "Arm Chair",
-      "name": "Press Out"
+      "equipment": "Chair",
+      "name": "press ups front/ back"
     },
     {
-      "equipment": "Arm Chair",
-      "name": "Boxing"
+      "equipment": "Chair",
+      "name": "pumping as on electric chair"
     },
     {
-      "equipment": "Arm Chair",
-      "name": "Hug"
+      "equipment": "Chair",
+      "name": "standing tendon stretch"
     },
     {
-      "equipment": "Arm Chair",
-      "name": "Circles"
+      "equipment": "Chair",
+      "name": "push the pedal down from front"
+    },
+    {
+      "equipment": "Chair",
+      "name": "push the pedal down from front 1 arm"
+    },
+    {
+      "equipment": "Chair",
+      "name": "push the pedal down from back"
+    },
+    {
+      "equipment": "Chair",
+      "name": "spine stretch forward"
+    },
+    {
+      "equipment": "Chair",
+      "name": "pull the pedal up"
+    },
+    {
+      "equipment": "Chair",
+      "name": "plank pumping 2 arms"
+    },
+    {
+      "equipment": "Chair",
+      "name": "swan"
+    },
+    {
+      "equipment": "Chair",
+      "name": "horseback"
+    },
+    {
+      "equipment": "Chair",
+      "name": "teaser on top"
+    },
+    {
+      "equipment": "Chair",
+      "name": "mermaid sitting"
+    },
+    {
+      "equipment": "Chair",
+      "name": "arm frog"
+    },
+    {
+      "equipment": "Chair",
+      "name": "mermaid kneeling"
+    },
+    {
+      "equipment": "Chair",
+      "name": "leg press down front"
+    },
+    {
+      "equipment": "Chair",
+      "name": "tabletop"
+    },
+    {
+      "equipment": "Chair",
+      "name": "tendon stretch prep"
+    },
+    {
+      "equipment": "Chair",
+      "name": "mountain climber"
+    },
+    {
+      "equipment": "Chair",
+      "name": "going up front"
+    },
+    {
+      "equipment": "Arm chair",
+      "name": "press out"
+    },
+    {
+      "equipment": "Arm chair",
+      "name": "boxing"
+    },
+    {
+      "equipment": "Arm chair",
+      "name": "hug"
+    },
+    {
+      "equipment": "Arm chair",
+      "name": "circle"
+    },
+    {
+      "equipment": "Arm chair",
+      "name": "sparkles"
     }
   ]
 }

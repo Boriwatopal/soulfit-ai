@@ -7,10 +7,11 @@ import { useAppStore } from '@/stores/appStore';
 const EQUIPMENT_OPTIONS = [
   { id: 'Mat', name: 'แมต (Mat)', description: 'เหมาะสำหรับมือใหม่ ไม่ต้องใช้อุปกรณ์พิเศษ' },
   { id: 'Reformer', name: 'รีฟอร์มเมอร์ (Reformer)', description: 'เครื่องพิลาทิสหลัก ให้การต้านทานและช่วยเหลือ' },
-  { id: 'Ladder barrel, corrector spine', name: 'แลดเดอร์แบร์เรล, คอร์เรคเตอร์สไปน์ (Ladder barrel, corrector spine)', description: 'ช่วยเพิ่มความยืดหยุ่นและเสริมสร้างกระดูกสันหลัง' },
+  { id: 'Ladder barrel', name: 'แลดเดอร์แบร์เรล (Ladder barrel)', description: 'ช่วยเพิ่มความยืดหยุ่นและเสริมสร้างกระดูกสันหลัง' },
+  { id: 'Corrector spine', name: 'คอร์เรคเตอร์สไปน์ (Corrector spine)', description: 'แก้ไขท่าทางและเสริมสร้างกระดูกสันหลัง' },
   { id: 'Cadillac', name: 'คาดิลแลค (Cadillac)', description: 'เครื่องอเนกประสงค์ ช่วยฟื้นฟูและท่าขั้นสูง' },
   { id: 'Chair', name: 'เก้าอี้พิลาทิส (Chair)', description: 'เน้นความแข็งแรงและความสมดุล' },
-  { id: 'Arm Chair', name: 'อาร์มแชร์ (Arm Chair)', description: 'เน้นแขนและลำตัวส่วนบน' }
+  { id: 'Arm chair', name: 'อาร์มแชร์ (Arm chair)', description: 'เน้นแขนและลำตัวส่วนบน' }
 ];
 
 export default function EquipmentSelection() {
