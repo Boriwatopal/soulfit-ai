@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import { useAppStore } from '@/stores/appStore';
 import StepIndicator from '@/components/StepIndicator';
 import PostureAnalysis from '@/components/PostureAnalysis';
@@ -89,8 +90,14 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-3"
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold text-xl">S</span>
+              <div className="w-10 h-10 relative">
+                <Image
+                  src="/images/soulfit-logo.png"
+                  alt="SoulFit Logo"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                />
               </div>
               <div>
                 <h1 className="text-xl font-bold text-gray-900">SoulFit AI</h1>
@@ -133,8 +140,14 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold">S</span>
+                <div className="w-8 h-8 relative">
+                  <Image
+                    src="/images/soulfit-logo.png"
+                    alt="SoulFit Logo"
+                    width={32}
+                    height={32}
+                    className="object-contain"
+                  />
                 </div>
                 <span className="font-bold text-gray-900">SoulFit AI</span>
               </div>
