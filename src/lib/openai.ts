@@ -210,9 +210,26 @@ export async function generatePilatesProgram(data: {
   recommendations: string[];
   healthAssessment: any;
   userGoals: any;
+  selectedEquipment: string[];
 }): Promise<any> {
   // Load exercise database
   const exerciseDatabase = await import('@/data/exercises.json');
+
+  // Pre-filter exercises based on selected equipment
+  const filteredExercises = exerciseDatabase.exercises.filter(exercise =>
+    data.selectedEquipment.includes(exercise.equipment)
+  );
+
+  console.log('Pre-filtered exercises:', {
+    totalExercises: exerciseDatabase.exercises.length,
+    selectedEquipment: data.selectedEquipment,
+    filteredCount: filteredExercises.length
+  });
+
+  if (filteredExercises.length === 0) {
+    throw new Error('No exercises available for selected equipment');
+  }
+
   try {
     console.log('Starting single-phase Pilates program generation...');
 
@@ -226,27 +243,12 @@ export async function generatePilatesProgram(data: {
         },
         {
           role: "user",
-          content: `Create a personalized 50-minute Pilates program by selecting exercises from this list:
+          content: `Create a personalized 50-minute Pilates program by selecting exercises from this FILTERED list based on user's equipment selection:
 
-              AVAILABLE EXERCISES BY EQUIPMENT:
+              SELECTED EQUIPMENT: ${data.selectedEquipment.join(', ')}
 
-              MAT EXERCISES:
-              ${exerciseDatabase.exercises.filter(e => e.equipment === 'Mat').map(e => `${e.name} (${e.id})`).join(', ')}
-
-              REFORMER EXERCISES:
-              ${exerciseDatabase.exercises.filter(e => e.equipment === 'Reformer').map(e => `${e.name} (${e.id})`).join(', ')}
-
-              LADDER BARREL EXERCISES:
-              ${exerciseDatabase.exercises.filter(e => e.equipment === 'Ladder Barrel').map(e => `${e.name} (${e.id})`).join(', ')}
-
-              CADILLAC EXERCISES:
-              ${exerciseDatabase.exercises.filter(e => e.equipment === 'Cadillac').map(e => `${e.name} (${e.id})`).join(', ')}
-
-              CHAIR EXERCISES:
-              ${exerciseDatabase.exercises.filter(e => e.equipment === 'Chair').map(e => `${e.name} (${e.id})`).join(', ')}
-
-              ARM CHAIR EXERCISES:
-              ${exerciseDatabase.exercises.filter(e => e.equipment === 'Arm Chair').map(e => `${e.name} (${e.id})`).join(', ')}
+              AVAILABLE EXERCISES (filtered by selected equipment):
+              ${filteredExercises.map(e => `${e.name} (${e.equipment})`).join(', ')}
 
               USER DATA TO ANALYZE:
 
@@ -264,17 +266,18 @@ export async function generatePilatesProgram(data: {
               - Available Time: ${data.userGoals.availableTime} minutes
               - Primary Goal: ${data.userGoals.primaryGoal}
               - Focus Areas: ${data.userGoals.focusAreas?.join(', ')}
-              - Equipment Available: ${data.userGoals.preferences?.equipment?.length > 0 ? data.userGoals.preferences.equipment.join(', ') : 'All equipment types available (Mat, Reformer, Ladder Barrel, Cadillac, Chair, Arm Chair)'}
+              - Selected Equipment: ${data.selectedEquipment.join(', ')}
               - Intensity Preference: ${data.userGoals.preferences?.intensity}
 
               INSTRUCTIONS:
               1. ANALYZE the user's posture, health, and goals
-              2. SELECT exercises from the database (use exact exercise IDs)
+              2. SELECT exercises ONLY from the filtered list above (these exercises match user's selected equipment)
               3. CREATE a 50-minute structure: warm-up (8-10 min) → main (35 min) → cool-down (5-7 min)
-              4. MATCH exercises to equipment preference and experience level
-              5. USE A VARIETY of equipment types to create an engaging and comprehensive program
-              6. ONLY use exercises that exist in the provided database
-              7. RESPOND IN THAI LANGUAGE for all text fields (title, reasoning, targetedIssues, expectedOutcomes, progressionTips)`
+              4. MATCH exercises to experience level and goals
+              5. USE ONLY the equipment the user selected: ${data.selectedEquipment.join(', ')}
+              6. ONLY use exercises that exist in the filtered list provided above
+              7. For exerciseId field, use the format: equipment_exercisename (e.g., "mat_hundred", "reformer_footwork")
+              8. RESPOND IN THAI LANGUAGE for all text fields (title, reasoning, targetedIssues, expectedOutcomes, progressionTips)`
         }
       ],
       response_format: {
@@ -420,13 +423,29 @@ export async function generatePilatesProgram(data: {
     // Expand exerciseIds to full exercise details
     const expandExercises = (exercises: any[]) => {
       return exercises.map(ex => {
-        const exerciseDetail = exerciseDatabase.exercises.find(e => e.id === ex.exerciseId);
+        // Try to find exercise by matching name and equipment from exerciseId
+        const exerciseDetail = filteredExercises.find(e => {
+          const idToMatch = ex.exerciseId.toLowerCase().replace(/[^a-z]/g, '');
+          const equipmentName = `${e.equipment.toLowerCase().replace(/\s+/g, '')}${e.name.toLowerCase().replace(/[^a-z]/g, '')}`;
+          return idToMatch === equipmentName || e.name === ex.exerciseId;
+        });
+
         if (!exerciseDetail) {
-          console.warn(`Exercise ID ${ex.exerciseId} not found in database`);
-          return ex;
+          console.warn(`Exercise ID ${ex.exerciseId} not found in filtered database, attempting fallback`);
+          // Fallback: try to extract equipment and name from exerciseId
+          return {
+            name: ex.exerciseId,
+            equipment: 'Unknown',
+            duration: ex.duration,
+            repetitions: ex.repetitions,
+            sets: ex.sets,
+            modifications: ex.modifications || [],
+            reasoning: ex.reasoning
+          };
         }
         return {
-          ...exerciseDetail,
+          name: exerciseDetail.name,
+          equipment: exerciseDetail.equipment,
           duration: ex.duration,
           repetitions: ex.repetitions,
           sets: ex.sets,

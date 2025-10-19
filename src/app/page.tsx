@@ -8,6 +8,7 @@ import PostureAnalysis from '@/components/PostureAnalysis';
 import HealthAssessment from '@/components/HealthAssessment';
 import AnalysisResults from '@/components/AnalysisResults';
 import GoalsQuestionnaire from '@/components/GoalsQuestionnaire';
+import EquipmentSelection from '@/components/EquipmentSelection';
 import PilatesProgram from '@/components/PilatesProgram';
 
 export default function Home() {
@@ -69,6 +70,8 @@ export default function Home() {
       case 4:
         return <GoalsQuestionnaire />;
       case 5:
+        return <EquipmentSelection />;
+      case 6:
         return <PilatesProgram />;
       default:
         return <PostureAnalysis />;
@@ -100,7 +103,7 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               className="text-right"
             >
-              <p className="text-sm text-gray-600">ขั้นตอน {currentStep} จาก 5</p>
+              <p className="text-sm text-gray-600">ขั้นตอน {currentStep} จาก 6</p>
               <p className="text-xs text-gray-400">เครื่องสร้างโปรแกรมส่วนบุคคล</p>
             </motion.div>
           </div>
@@ -110,7 +113,7 @@ export default function Home() {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Step Indicator */}
-        <StepIndicator currentStep={currentStep} totalSteps={5} />
+        <StepIndicator currentStep={currentStep} totalSteps={6} />
         
         {/* Step Content */}
         <motion.div

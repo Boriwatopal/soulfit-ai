@@ -2,10 +2,11 @@ import { create } from 'zustand';
 import { AppState, PostureAnalysis, HealthAssessment, UserGoals, PilatesProgram } from '@/types';
 
 interface AppStore extends AppState {
-  setCurrentStep: (step: 1 | 2 | 3 | 4 | 5) => void;
+  setCurrentStep: (step: 1 | 2 | 3 | 4 | 5 | 6) => void;
   updatePostureAnalysis: (data: Partial<PostureAnalysis>) => void;
   updateHealthAssessment: (data: Partial<HealthAssessment>) => void;
   updateUserGoals: (data: Partial<UserGoals>) => void;
+  updateSelectedEquipment: (equipment: string[]) => void;
   setGeneratedProgram: (program: PilatesProgram) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | undefined) => void;
@@ -39,6 +40,7 @@ const initialState: AppState = {
       style: 'mixed',
     },
   },
+  selectedEquipment: [],
   isLoading: false,
 };
 
@@ -64,6 +66,8 @@ export const useAppStore = create<AppStore>((set, get) => {
       userGoals: { ...state.userGoals, ...data },
     })),
 
+  updateSelectedEquipment: (equipment) => set({ selectedEquipment: equipment }),
+
   setGeneratedProgram: (program) => set({ generatedProgram: program }),
 
   setLoading: (loading) => set({ isLoading: loading }),
@@ -74,15 +78,15 @@ export const useAppStore = create<AppStore>((set, get) => {
 
     nextStep: () => {
       const currentStep = get().currentStep;
-      if (currentStep < 5) {
-        set({ currentStep: (currentStep + 1) as 1 | 2 | 3 | 4 | 5 });
+      if (currentStep < 6) {
+        set({ currentStep: (currentStep + 1) as 1 | 2 | 3 | 4 | 5 | 6 });
       }
     },
 
     previousStep: () => {
       const currentStep = get().currentStep;
       if (currentStep > 1) {
-        set({ currentStep: (currentStep - 1) as 1 | 2 | 3 | 4 | 5 });
+        set({ currentStep: (currentStep - 1) as 1 | 2 | 3 | 4 | 5 | 6 });
       }
     },
   };

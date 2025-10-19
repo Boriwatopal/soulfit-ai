@@ -184,10 +184,11 @@ export interface PilatesProgram {
 }
 
 export interface AppState {
-  currentStep: 1 | 2 | 3 | 4 | 5;
+  currentStep: 1 | 2 | 3 | 4 | 5 | 6;
   postureAnalysis: PostureAnalysis;
   healthAssessment: HealthAssessment;
   userGoals: UserGoals;
+  selectedEquipment: string[];
   generatedProgram?: PilatesProgram;
   isLoading: boolean;
   error?: string;

@@ -14,15 +14,16 @@ interface ExerciseRow {
 }
 
 export default function PilatesProgram() {
-  const { 
-    postureAnalysis, 
-    healthAssessment, 
-    userGoals, 
+  const {
+    postureAnalysis,
+    healthAssessment,
+    userGoals,
+    selectedEquipment,
     generatedProgram,
     setGeneratedProgram,
     previousStep,
     setLoading,
-    isLoading 
+    isLoading
   } = useAppStore();
 
   const [exercises, setExercises] = useState<ExerciseRow[]>([]);
@@ -112,7 +113,8 @@ export default function PilatesProgram() {
           postureAnalysis: postureAnalysis?.analysis || '',
           recommendations: postureAnalysis?.recommendations || [],
           healthAssessment,
-          userGoals
+          userGoals,
+          selectedEquipment
         })
       });
 

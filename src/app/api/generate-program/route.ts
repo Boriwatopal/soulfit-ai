@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
     console.log('Starting Pilates program generation...');
 
     const body = await request.json();
-    const { postureAnalysis, recommendations, healthAssessment, userGoals } = body;
+    const { postureAnalysis, recommendations, healthAssessment, userGoals, selectedEquipment } = body;
 
     console.log('API: Received data:', {
       hasPostureAnalysis: !!postureAnalysis,
@@ -15,7 +15,8 @@ export async function POST(request: NextRequest) {
       recommendationsCount: recommendations?.length,
       hasHealthAssessment: !!healthAssessment,
       hasUserGoals: !!userGoals,
-      userGoalType: userGoals?.primaryGoal
+      userGoalType: userGoals?.primaryGoal,
+      selectedEquipment: selectedEquipment
     });
 
     if (!postureAnalysis) {
@@ -26,11 +27,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (!selectedEquipment || selectedEquipment.length === 0) {
+      console.log('ERROR: No equipment selected');
+      return NextResponse.json(
+        { error: 'Equipment selection is required' },
+        { status: 400 }
+      );
+    }
+
     const result = await generatePilatesProgram({
       postureAnalysis,
       recommendations,
       healthAssessment,
-      userGoals
+      userGoals,
+      selectedEquipment
     });
 
     console.log('Program generated successfully:', {
